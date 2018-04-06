@@ -53,7 +53,7 @@ resources:
         AttributeDefinitions:
           -
             AttributeName: id 
-            AttributeType: N
+            AttributeType: S
         KeySchema:
           -
             AttributeName: id 
