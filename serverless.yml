@@ -1,0 +1,63 @@
+service: eg-quickstart
+
+custom:
+  eventgateway:
+    space: <yourSpace>
+    apiKey: <yourApiKey>
+
+plugins:
+  - "@serverless/serverless-event-gateway-plugin"
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: dev
+  region: us-east-1
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+      Resource:
+        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
+  environment:
+    USERS_TABLE: { "Ref": "UsersDynamoDBTable" }
+    SPACE: ${self:custom.eventgateway.space}
+
+functions:
+  getUser:
+    handler: handler.getUser
+    events:
+      - eventgateway:
+          event: http
+          path: /users/:id
+          method: GET
+  createUser:
+    handler: handler.createUser
+    events:
+      - eventgateway:
+          event: http
+          path: /users
+          method: POST
+  addUserToCRM:
+    handler: handler.addUserToCRM
+    events:
+      - eventgateway:
+          event: "user.created"
+
+resources:
+  Resources:
+    UsersDynamoDBTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        AttributeDefinitions:
+          -
+            AttributeName: id 
+            AttributeType: N
+        KeySchema:
+          -
+            AttributeName: id 
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1
