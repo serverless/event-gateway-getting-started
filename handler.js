@@ -38,8 +38,7 @@ module.exports.getUser = (event, context, callback) => {
 };
 
 module.exports.createUser = (event, context, callback) => {
-
-  const user = JSON.parse(event.data.body)
+  const user = event.data.body
   if (!user.firstName || !user.lastName || !user.email || !user.id) {
       callback(null, {
         statusCode: 400,
