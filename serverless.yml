@@ -2,8 +2,8 @@ service: eg-quickstart
 
 custom:
   eventgateway:
-    space: <yourSpace>
-    apiKey: <yourApiKey>
+    url: <yourAppURL> # <-- Add your App URL, e.g. myorg-app.slsgateway.com
+    apiKey: <yourApiKey> # <-- Add your API key
 
 plugins:
   - "@serverless/serverless-event-gateway-plugin"
@@ -22,7 +22,7 @@ provider:
         - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
   environment:
     USERS_TABLE: { "Ref": "UsersDynamoDBTable" }
-    SPACE: ${self:custom.eventgateway.space}
+    URL: ${self:custom.eventgateway.url}
 
 functions:
   getUser:
