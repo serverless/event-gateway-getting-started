@@ -63,7 +63,7 @@ Let's get started!
 
     ```bash
     $ APP="<appURL>"
-    $ curl -X POST https://${APP}/users \
+    $ curl -X POST -H "Content-Type: application/json" https://${APP}/users \
         --data '{
         	"id": "10",
         	"firstName": "Donald",
