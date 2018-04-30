@@ -27,7 +27,7 @@ Let's get started!
     
     custom:
       eventgateway:
-        space: <yourSpace> # <-- Add your Space name
+        url: <yourAppURL> # <-- Add your App URL, e.g. myorg-app.slsgateway.com
         apiKey: <yourApiKey> # <-- Add your API key
     ```
    
@@ -62,8 +62,8 @@ Let's get started!
 4. Create a new user by hitting the createUser endpoint:
 
     ```bash
-    $ SPACE="<spaceName>"
-    $ curl -X POST https://${SPACE}.slsgateway.com/users \
+    $ APP="<appURL>"
+    $ curl -X POST https://${APP}/users \
         --data '{
         	"id": "10",
         	"firstName": "Donald",
@@ -76,8 +76,8 @@ Let's get started!
 5. You can now retrieve your user by using the getUser endpoint:
 
     ```bash
-    $ SPACE="<spaceName>"
-    $ curl -X GET https://${SPACE}.slsgateway.com/users/10
+    $ APP="<appURL>"
+    $ curl -X GET https://${APP}/users/10
     {"id":"10","email":"donald.duck@disney.com","firstName":"Donald","lastName":"Duck"}
     ```
     
@@ -120,8 +120,7 @@ Now that you know the basics of using the Event Gateway, let's cover some concep
 
 - **Space:** Spaces are a logical unit of isolation within the Event Gateway. Your functions and subscriptions are registered within a particular space and may only interact with other elements in their space.
 
-   In the private beta of the hosted Event Gateway, you will receive a fully-qualified domain name for each space you create at `https://<spaceName>.slsgateway.com`. Space names are first-come, first-served during the private beta.
-   
+   With the hosted Event Gateway, you will create **Apps**. Each App receives a fully-qualified domain name to be used with the Event Gateway, such as `https://myorg-dev.slsgateway.com`. Each App maps to a Space within the Event Gateway and will be fully isolated from all other Apps.
    
 ## Additional Resources:
 
