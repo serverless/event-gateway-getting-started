@@ -10,9 +10,9 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@serverless/serverless-event-gateway-plugin": "^0.5.2"
+    "@serverless/serverless-event-gateway-plugin": "^0.5.3"
   },
   "dependencies": {
-    "@serverless/event-gateway-sdk": "^0.4.0"
+    "@serverless/event-gateway-sdk": "^0.5.2"
   }
 }
