@@ -38,12 +38,13 @@ module.exports.getUser = (event, context, callback) => {
 };
 
 module.exports.createUser = (event, context, callback) => {
-  const user = event.data.body
+  const user = JSON.parse(event.data.body)
   if (!user.firstName || !user.lastName || !user.email || !user.id) {
       callback(null, {
         statusCode: 400,
         body: JSON.stringify({errors: [`Invalid request. Missing required field.`]})
       });
+      return;
   }
 
   const params = {
@@ -85,7 +86,7 @@ module.exports.createUser = (event, context, callback) => {
 module.exports.addUserToCRM = (event, context, callback) => {
 
   const user = event.data
-  console.log(`Received ${event.event} event with user:`)
+  console.log(`Received ${event.eventType} event with user:`)
   console.dir(user)
 
   // Add your CRM logic here

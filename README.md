@@ -28,7 +28,7 @@ Let's get started!
     custom:
       eventgateway:
         url: <yourAppURL> # <-- Add your App URL, e.g. myorg-app.slsgateway.com
-        apiKey: <yourApiKey> # <-- Add your API key
+        accessKey: <yourAccessKey> # <-- Add your Access key
     ```
    
 3. Deploy your service
