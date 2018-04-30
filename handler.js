@@ -4,10 +4,10 @@ const AWS = require('aws-sdk');
 const client = new AWS.DynamoDB.DocumentClient();
 const SDK = require('@serverless/event-gateway-sdk')
 const USERS_TABLE = process.env.USERS_TABLE;
-const SPACE = process.env.SPACE;
+const URL = process.env.URL;
 
 const eventGateway = new SDK({
-  url: `https://${SPACE}.slsgateway.com`,
+  url: URL,
 })
 
 module.exports.getUser = (event, context, callback) => {
