@@ -8,6 +8,10 @@ This service will deploy three functions:
 - `getUser`: an HTTP endpoint for retrieving a User from DynamoDB; and
 - `addUserToCRM`: a function that is triggered by a `user.created` event and stores new users in a CRM system.
 
+The `createUser` function allows you to create a new User by sending a JSON payload to `/users`, and the `getUser` function lets you retrieve that User by making a GET request to `/users/{id}`.
+
+In the `createUser` function, we're using the [Event Gateway SDK](https://github.com/serverless/event-gateway-sdk) to emit a custom event of `user.created` into the Event Gateway. You can then subscribe functions to react to this custom event. The `addUserToCRM` function is subscribed to this event as an example -- imagine a Marketing department that wants to store newly-created Users in a CRM.
+
 Let's get started!
 
 ## Usage
