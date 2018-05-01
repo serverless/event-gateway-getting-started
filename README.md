@@ -18,6 +18,7 @@ Let's get started!
     $ git clone git@github.com:serverless/event-gateway-getting-started.git
     $ cd event-gateway-getting-started
     $ npm install
+    $ npm install -g serverless
     ```
 
 2. Update the `eventgateway` section of the `custom` block in `serverless.yml`:
