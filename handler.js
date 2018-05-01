@@ -29,6 +29,15 @@ module.exports.getUser = (event, context, callback) => {
       return;
     }
 
+    if (result.Item === undefined) {
+      const response = {
+        statusCode: 404,
+        body: JSON.stringify({errors: [`Could not retrieve user with ID ${event.data.params.id}`]})
+      };
+      callback(null, response);
+      return;
+    }
+
     const response = {
       statusCode: 200,
       body: JSON.stringify(result.Item),
