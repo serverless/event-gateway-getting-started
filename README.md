@@ -19,7 +19,7 @@ Let's get started!
 1. Clone this repository and install the packages:
 
     ```bash
-    $ git clone git@github.com:serverless/event-gateway-getting-started.git
+    $ git clone https://github.com/serverless/event-gateway-getting-started.git
     $ cd event-gateway-getting-started
     $ npm install
     $ npm install -g serverless
