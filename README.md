@@ -89,7 +89,7 @@ Let's get started!
 6. In your createUser code, it emits a `user.created` event to the Event Gateway, which triggers the `addUserToCRM` function. You can check the logs for that function to see that it ran:
 
     ```bash
-    $ sls logs -f addUserToCRM -t
+    $ sls logs -f addUserToCRM
     START RequestId: 0ccf992b-39dc-11e8-b35d-735763392802 Version: $LATEST
     2018-04-06 20:49:50.917 (+00:00)	0ccf992b-39dc-11e8-b35d-735763392802
     Received user.created event with user:
@@ -111,7 +111,7 @@ Let's get started!
     Run `serverless logs -f <functionName>` to verify your subscribed function was triggered.
     ```
     
-    Again, you can check your logs with `sls logs -f addUserToCRM -t` to check the behavior of your function.
+    Again, you can check your logs with `sls logs -f addUserToCRM` to check the behavior of your function.
     
 ## Event Gateway Concepts
     
