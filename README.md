@@ -1,6 +1,6 @@
 ## Getting Started with the Event Gateway
 
-This example shows a simple way to deploy a service to the Event Gateway. It uses the hosted version provided by Serverless, Inc. -- [reach out](mailto:hello@serverless.com) if you'd like an invite!
+This example shows a simple way to deploy a service to the Event Gateway. It uses the hosted version provided by Serverless, Inc. -- [sign up here](https://dashboard.serverless.com)!
 
 This service will deploy three functions:
 
@@ -13,6 +13,36 @@ The `createUser` function allows you to create a new User by sending a JSON payl
 In the `createUser` function, we're using the [Event Gateway SDK](https://github.com/serverless/event-gateway-sdk) to emit a custom event of `user.created` into the Event Gateway. You can then subscribe functions to react to this custom event. The `addUserToCRM` function is subscribed to this event as an example -- imagine a Marketing department that wants to store newly-created Users in a CRM.
 
 Let's get started!
+
+## Setup
+
+This is best used with the [hosted version of the Event Gateway](https://dashboard.serverless.com/) provided by Serverless, Inc. as a fully-managed service.
+
+After you create an account, you'll need two things: an **Access Key** and an **Application URL**.
+
+Get an Access Key in the `Access Control` section, and save it to your clipboard:
+
+<img src="https://user-images.githubusercontent.com/6509926/39500460-31212824-4d7a-11e8-8333-832fe2ee8cfd.png" width=500 />
+
+
+Then, grab the URL for one of your Applications:
+
+<img src="https://user-images.githubusercontent.com/6509926/39500504-a029a1f6-4d7a-11e8-806f-0f158574f9c4.png" width=500 />
+
+Finally, save both of these to your `serverless.yml`:
+
+```yml
+# serverless.yml
+
+custom:
+  eventgateway:
+    url: tenant-yourapp.slsgateway.com
+    accessKey: AKmyKey1234
+
+...
+```
+
+You're all set!
 
 ## Usage
 
