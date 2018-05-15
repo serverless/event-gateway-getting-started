@@ -20,26 +20,21 @@ This is best used with the [hosted version of the Event Gateway](https://dashboa
 
 After you create an account, you'll need two things: an **Access Key** and an **Application URL**.
 
-Get an Access Key in the `Access Control` section, and save it to your clipboard:
+Get an Access Key in the `Access Control` section, and set it as an environment variable:
 
 <img src="https://user-images.githubusercontent.com/6509926/39500460-31212824-4d7a-11e8-8333-832fe2ee8cfd.png" width=500 />
 
+```bash
+$ export EVENT_GATEWAY_ACCESS_KEY=<paste your key here>
+```
 
-Then, grab the URL for one of your Applications:
+
+Then, grab the URL for one of your Applications and save it as an environment variable:
 
 <img src="https://user-images.githubusercontent.com/6509926/39500504-a029a1f6-4d7a-11e8-806f-0f158574f9c4.png" width=500 />
 
-Finally, save both of these to your `serverless.yml`:
-
-```yml
-# serverless.yml
-
-custom:
-  eventgateway:
-    url: tenant-yourapp.slsgateway.com
-    accessKey: AKmyKey1234
-
-...
+```bash
+$ export EVENT_GATEWAY_APPLICATION=<paste your application here>
 ```
 
 You're all set!
@@ -55,16 +50,7 @@ You're all set!
     $ npm install -g serverless
     ```
 
-2. Update the `eventgateway` section of the `custom` block in `serverless.yml`:
-
-    ```yml
-    # serverless.yml
-    
-    custom:
-      eventgateway:
-        url: <yourAppURL> # <-- Add your App URL, e.g. myorg-app.slsgateway.com
-        accessKey: <yourAccessKey> # <-- Add your Access key
-    ```
+2. Set the environment variables as described in the [Setup](#setup) section above.
    
 3. Deploy your service
 
