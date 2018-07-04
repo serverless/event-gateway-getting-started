@@ -20,7 +20,7 @@ This is best used with the [hosted version of the Event Gateway](https://dashboa
 
 After you create an account, you'll need two things: an **Access Key** and an **Application URL**.
 
-Get an Access Key in the `Access Control` section, and set it as an environment variable:
+Get an Access Key in the `secure > access keys` section, and set it as an environment variable:
 
 <img src="https://user-images.githubusercontent.com/6509926/39500460-31212824-4d7a-11e8-8333-832fe2ee8cfd.png" width=500 />
 
@@ -29,7 +29,7 @@ $ export EVENT_GATEWAY_ACCESS_KEY=<paste your key here>
 ```
 
 
-Then, grab the URL for one of your Applications and save it as an environment variable:
+Then, grab the URL for one of your applications (`develop > applications` section) and save it as an environment variable:
 
 <img src="https://user-images.githubusercontent.com/6509926/39500504-a029a1f6-4d7a-11e8-806f-0f158574f9c4.png" width=500 />
 
@@ -77,9 +77,9 @@ You're all set!
     EventGateway: Function "createUser" registered. (ID: eg-quickstart-dev-createUser)
     EventGateway: Function "getUser" registered. (ID: eg-quickstart-dev-getUser)
     EventGateway: Function "addUserToCRM" registered. (ID: eg-quickstart-dev-addUserToCRM)
-    EventGateway: Function "createUser" subscribed to "http" event.
+    EventGateway: Function "createUser" subscribed to "http.request" event.
     EventGateway: Function "addUserToCRM" subscribed to "user.created" event.
-    EventGateway: Function "getUser" subscribed to "http" event.
+    EventGateway: Function "getUser" subscribed to "http.request" event.
     ```
 
 4. Create a new user by hitting the createUser endpoint:
