@@ -51,7 +51,7 @@ You're all set!
     ```
 
 2. Set the environment variables as described in the [Setup](#setup) section above.
-   
+
 3. Deploy your service
 
     ```bash
@@ -72,6 +72,8 @@ You're all set!
       addUserToCRM: eg-quickstart-dev-addUserToCRM
 
     Event Gateway Plugin
+    EventGateway: Event type "http.request" created.
+    EventGateway: Event type "user.created" created.
     EventGateway: Function "createUser" registered. (ID: eg-quickstart-dev-createUser)
     EventGateway: Function "getUser" registered. (ID: eg-quickstart-dev-getUser)
     EventGateway: Function "addUserToCRM" registered. (ID: eg-quickstart-dev-addUserToCRM)
@@ -79,7 +81,7 @@ You're all set!
     EventGateway: Function "addUserToCRM" subscribed to "user.created" event.
     EventGateway: Function "getUser" subscribed to "http" event.
     ```
-    
+
 4. Create a new user by hitting the createUser endpoint:
 
     ```bash
@@ -93,7 +95,7 @@ You're all set!
         }'
     {"id":10,"firstName":"Donald","lastName":"Duck","email":"donald.duck@disney.com"}
     ```
-    
+
 5. You can now retrieve your user by using the getUser endpoint:
 
     ```bash
@@ -101,7 +103,7 @@ You're all set!
     $ curl -X GET https://${APP}/users/10
     {"id":"10","email":"donald.duck@disney.com","firstName":"Donald","lastName":"Duck"}
     ```
-    
+
 6. In your createUser code, it emits a `user.created` event to the Event Gateway, which triggers the `addUserToCRM` function. You can check the logs for that function to see that it ran:
 
     ```bash
@@ -116,7 +118,7 @@ You're all set!
     END RequestId: 0ccf992b-39dc-11e8-b35d-735763392802
     REPORT RequestId: 0ccf992b-39dc-11e8-b35d-735763392802 Duration: 5.15 ms	Billed Duration: 100 ms 	Memory Size: 1024 MB	Max Memory Used: 32 MB
     ```
-    
+
     Nice! We can see our logs from the triggered function.
 
 7. If you'd like to test emitting events into the Gateway, you can use the `sls gateway emit` command:
@@ -126,11 +128,11 @@ You're all set!
     Event emitted: user.created
     Run `serverless logs -f <functionName>` to verify your subscribed function was triggered.
     ```
-    
+
     Again, you can check your logs with `sls logs -f addUserToCRM` to check the behavior of your function.
-    
+
 ## Event Gateway Concepts
-    
+
 Now that you know the basics of using the Event Gateway, let's cover some concepts:
 
 - **Events:** Events are bits of data that indicate something happened. This could be an HTTP request ("_a client requested the resource at path `/users/15`_") or it could be a custom event emitted from your application ("_a user was created with the following details..._").
@@ -142,10 +144,10 @@ Now that you know the basics of using the Event Gateway, let's cover some concep
 - **Space:** Spaces are a logical unit of isolation within the Event Gateway. Your functions and subscriptions are registered within a particular space and may only interact with other elements in their space.
 
    With the hosted Event Gateway, you will create **Apps**. Each App receives a fully-qualified domain name to be used with the Event Gateway, such as `https://myorg-dev.slsgateway.com`. Each App maps to a Space within the Event Gateway and will be fully isolated from all other Apps.
-   
+
 ## Additional Resources:
 
 - [Event Gateway](https://github.com/serverless/event-gateway) Repository
 - [Event Gateway plugin](https://github.com/serverless/serverless-event-gateway-plugin) for the Serverless Framework
 - [Event Gateway SDK](https://github.com/serverless/event-gateway-sdk) for interacting with the Event Gateway in your application code
-    
+

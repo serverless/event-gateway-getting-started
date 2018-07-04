@@ -1,6 +1,9 @@
 service: eg-quickstart
 
 custom:
+  eventTypes:
+    http.request:
+    user.created:
   eventgateway:
     url: ${env:EVENT_GATEWAY_APPLICATION}
     accessKey: ${env:EVENT_GATEWAY_ACCESS_KEY}
@@ -29,21 +32,24 @@ functions:
     handler: handler.getUser
     events:
       - eventgateway:
-          event: http
+          type: sync
+          eventType: http.request
           path: /users/:id
           method: GET
   createUser:
     handler: handler.createUser
     events:
       - eventgateway:
-          event: http
+          type: sync
+          eventType: http.request
           path: /users
           method: POST
   addUserToCRM:
     handler: handler.addUserToCRM
     events:
       - eventgateway:
-          event: "user.created"
+          type: async
+          eventType: user.created
 
 resources:
   Resources:
@@ -52,11 +58,11 @@ resources:
       Properties:
         AttributeDefinitions:
           -
-            AttributeName: id 
+            AttributeName: id
             AttributeType: S
         KeySchema:
           -
-            AttributeName: id 
+            AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
