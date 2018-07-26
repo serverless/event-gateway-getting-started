@@ -1,6 +1,6 @@
 tenant: ac360 # Insert your tenant
-app: demo-v1 # Insert your app
-service: users # Insert your service name
+app: demos # Insert your app
+service: v1-eg-rest-api # Insert your service name
 
 # Provider
 provider:
@@ -24,6 +24,7 @@ custom:
   eventTypes:
     http.request:
     user.created:
+    email.sent:
 
 # Functions & Subscriptions
 functions:
