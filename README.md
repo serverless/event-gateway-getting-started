@@ -22,41 +22,41 @@ Clone this repository, `cd` into it and run `npm i`
 
 Make sure you have created an Application in the [Serverless Dashboard](https://dashboard.serverless.com) and filled in your `tenant` and `app` in your `serverless.yml` file.
 
-    ```yaml
-    # serverless.yml
+```yaml
+# serverless.yml
 
-    tenant: mytenant # Insert your tenant
-    app: demos # Insert your app
-    service: v1-eg-rest-api # Come up with a service name
-    ```
+tenant: mytenant # Insert your tenant
+app: demos # Insert your app
+service: v1-eg-rest-api # Come up with a service name
+```
 
 Deploy your service
 
-    ```bash
-    $ serverless deploy
-    ```
+```bash
+$ serverless deploy
+```
 
 Create a new user by hitting the createUser endpoint:
 
-    ```bash
-    $ APP="<appURL>"
-    $ curl -X POST -H "Content-Type: application/json" https://${APP}/users \
-        --data '{
-        	"id": "10",
-        	"firstName": "Donald",
-        	"lastName": "Duck",
-        	"email": "donald.duck@disney.com"
-        }'
-    {"id":10,"firstName":"Donald","lastName":"Duck","email":"donald.duck@disney.com"}
-    ```
+```bash
+$ APP="<appURL>"
+$ curl -X POST -H "Content-Type: application/json" https://${APP}/users \
+    --data '{
+    	"id": "10",
+    	"firstName": "Donald",
+    	"lastName": "Duck",
+    	"email": "donald.duck@disney.com"
+    }'
+{"id":10,"firstName":"Donald","lastName":"Duck","email":"donald.duck@disney.com"}
+```
 
 You can now retrieve your user by using the getUser endpoint:
 
-    ```bash
-    $ APP="<appURL>"
-    $ curl -X GET https://${APP}/users/10
-    {"id":"10","email":"donald.duck@disney.com","firstName":"Donald","lastName":"Duck"}
-    ```
+```bash
+$ APP="<appURL>"
+$ curl -X GET https://${APP}/users/10
+{"id":"10","email":"donald.duck@disney.com","firstName":"Donald","lastName":"Duck"}
+```
 
 In your createUser code, it emits a `user.created` event to the Event Gateway, which triggers the `emailUser` function, which then emits a `email.sent` event. You can check the logs for the Event Gateway in the [Dashboard](https://dashboard.serverless.com), just navigate to your Service and click the "logs" tab.
 
