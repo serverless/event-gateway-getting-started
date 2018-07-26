@@ -1,6 +1,6 @@
-## Getting Started with the Event Gateway
+# Event Gateway REST API
 
-This example shows a simple way to deploy a service to the Event Gateway. It uses the hosted version provided by Serverless, Inc. -- [sign up here](https://dashboard.serverless.com)!
+This example shows a simple way to deploy a REST API via the Event Gateway and AWS Lambda. It uses the hosted version provided by Serverless, Inc. -- [Sign up here](https://dashboard.serverless.com)!
 
 This service will deploy three functions:
 
