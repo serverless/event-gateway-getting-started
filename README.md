@@ -14,15 +14,13 @@ In the `createUser` function, we're using the [Event Gateway SDK](https://github
 
 Let's get started!
 
-## Setup
+## Quick-Start
 
 Follow this [guide](https://github.com/serverless/platform/blob/master/docs/getting-started.md) to get the Serverless Framework & Event Gateway set up.
 
-## Usage
+Clone this repository, `cd` into it and run `npm i`
 
-1. Clone this repository, `cd` into it and run `npm i`
-
-2. Make sure you have created an Application in the [Serverless Dashboard](https://dashboard.serverless.com) and filled in your `tenant` and `app` in your `serverless.yml` file.
+Make sure you have created an Application in the [Serverless Dashboard](https://dashboard.serverless.com) and filled in your `tenant` and `app` in your `serverless.yml` file.
 
     ```yaml
     # serverless.yml
@@ -32,13 +30,13 @@ Follow this [guide](https://github.com/serverless/platform/blob/master/docs/gett
     service: v1-eg-rest-api # Come up with a service name
     ```
 
-3. Deploy your service
+Deploy your service
 
     ```bash
     $ serverless deploy
     ```
 
-4. Create a new user by hitting the createUser endpoint:
+Create a new user by hitting the createUser endpoint:
 
     ```bash
     $ APP="<appURL>"
@@ -52,7 +50,7 @@ Follow this [guide](https://github.com/serverless/platform/blob/master/docs/gett
     {"id":10,"firstName":"Donald","lastName":"Duck","email":"donald.duck@disney.com"}
     ```
 
-5. You can now retrieve your user by using the getUser endpoint:
+You can now retrieve your user by using the getUser endpoint:
 
     ```bash
     $ APP="<appURL>"
@@ -60,7 +58,7 @@ Follow this [guide](https://github.com/serverless/platform/blob/master/docs/gett
     {"id":"10","email":"donald.duck@disney.com","firstName":"Donald","lastName":"Duck"}
     ```
 
-6. In your createUser code, it emits a `user.created` event to the Event Gateway, which triggers the `emailUser` function, which then emits a `email.sent` event. You can check the logs for the Event Gateway in the [Dashboard](https://dashboard.serverless.com), just navigate to your Service and click the "logs" tab.
+In your createUser code, it emits a `user.created` event to the Event Gateway, which triggers the `emailUser` function, which then emits a `email.sent` event. You can check the logs for the Event Gateway in the [Dashboard](https://dashboard.serverless.com), just navigate to your Service and click the "logs" tab.
 
 ## Additional Resources:
 
