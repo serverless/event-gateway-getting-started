@@ -1,16 +1,8 @@
-service: eg-quickstart
+tenant: ac360 # Insert your tenant
+app: demos # Insert your app
+service: v1-eg-rest-api # Insert your service name
 
-custom:
-  eventTypes:
-    http.request:
-    user.created:
-  eventgateway:
-    url: ${env:EVENT_GATEWAY_APPLICATION}
-    accessKey: ${env:EVENT_GATEWAY_ACCESS_KEY}
-
-plugins:
-  - "@serverless/serverless-event-gateway-plugin"
-
+# Provider
 provider:
   name: aws
   runtime: nodejs8.10
@@ -22,11 +14,19 @@ provider:
         - dynamodb:GetItem
         - dynamodb:PutItem
       Resource:
-        - { "Fn::GetAtt": ["UsersDynamoDBTable", "Arn" ] }
+        - { "Fn::GetAtt": [ "UsersDynamoDBTable", "Arn" ] }
   environment:
     USERS_TABLE: { "Ref": "UsersDynamoDBTable" }
-    URL: ${self:custom.eventgateway.url}
+    URL: ${self:tenant}-${self:app}.slsgateway.com
 
+# Events
+custom:
+  eventTypes:
+    http.request:
+    user.created:
+    email.sent:
+
+# Functions & Subscriptions
 functions:
   getUser:
     handler: handler.getUser
@@ -44,26 +44,29 @@ functions:
           eventType: http.request
           path: /users
           method: POST
-  addUserToCRM:
-    handler: handler.addUserToCRM
+  emailUser:
+    handler: handler.emailUser
     events:
       - eventgateway:
           type: async
           eventType: user.created
 
+# Resources
 resources:
   Resources:
     UsersDynamoDBTable:
       Type: 'AWS::DynamoDB::Table'
       Properties:
         AttributeDefinitions:
-          -
-            AttributeName: id
+          - AttributeName: id
             AttributeType: S
         KeySchema:
-          -
-            AttributeName: id
+          - AttributeName: id
             KeyType: HASH
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
+
+# Plugins
+plugins:
+  - "@serverless/serverless-event-gateway-plugin"
