@@ -45,7 +45,11 @@ module.exports.createUser = (event, context, callback) => {
 
     eventGateway
       .emit({
-        event: 'user.created',
+        eventID: '1',
+        eventType: 'user.created',
+        cloudEventsVersion: '0.1',
+        source: '/services/users',
+        contentType: 'application/json',
         data: params.Item
       })
       .then(() => console.log('Emitted user.created event'))
